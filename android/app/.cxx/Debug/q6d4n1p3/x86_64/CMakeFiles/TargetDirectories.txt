@@ -1,0 +1,2 @@
+D:/projects/Egy_Railways/android/app/.cxx/Debug/q6d4n1p3/x86_64/CMakeFiles/edit_cache.dir
+D:/projects/Egy_Railways/android/app/.cxx/Debug/q6d4n1p3/x86_64/CMakeFiles/rebuild_cache.dir

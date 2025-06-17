@@ -1,0 +1,2 @@
+D:/projects/Egy_Railways/android/app/.cxx/Debug/q6d4n1p3/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/projects/Egy_Railways/android/app/.cxx/Debug/q6d4n1p3/armeabi-v7a/CMakeFiles/rebuild_cache.dir
