@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:egyrailwayes/constants/app_color.dart';
 import 'package:egyrailwayes/constants/profile_button.dart';
+import 'package:egyrailwayes/screens/pages/account.dart';
 import 'package:egyrailwayes/screens/pages/bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -386,21 +387,24 @@ class _EditProfileState extends State<EditProfile> {
                                     end: Alignment.topRight)),
                             child: MaterialButton(
                               onPressed: () async {
-                                {
-                                  final userId = Supabase
-                                      .instance.client.auth.currentUser?.id;
+                                // {
+                                //   final userId = Supabase
+                                //       .instance.client.auth.currentUser?.id;
 
-                                  await Supabase.instance.client
-                                      .from('Users')
-                                      .update({
-                                        'firstName': firstNamecontroller.text,
-                                        'lastName': lastNamecontroller.text,
-                                        'email': emailcontroller.text,
-                                        'phone': phonecontroller.text,
-                                      })
-                                      .eq('UID', userId!)
-                                      .select(); // <-- مهم جداً
-                                }
+                                //   await Supabase.instance.client
+                                //       .from('Users')
+                                //       .update({
+                                //         'firstName': firstNamecontroller.text,
+                                //         'lastName': lastNamecontroller.text,
+                                //         'email': emailcontroller.text,
+                                //         'phone': phonecontroller.text,
+                                //       })
+                                //       .eq('UID', userId!)
+                                //       .select(); // <-- مهم جداً
+                                // }
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => Account()));
                               },
                               child: Text(
                                 "Save Changes",

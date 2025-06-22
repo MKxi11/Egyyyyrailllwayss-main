@@ -1,4 +1,5 @@
 import 'package:egyrailwayes/constants/app_color.dart';
+import 'package:egyrailwayes/constants/bar.dart';
 import 'package:egyrailwayes/screens/Start/welcome.dart';
 import 'package:egyrailwayes/screens/pages/find.dart';
 import 'package:egyrailwayes/screens/profile/edit_profile.dart';
@@ -20,17 +21,9 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff0057FF),
-        centerTitle: true,
-        title: Text(
-          "Account",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Bar(),
       ),
       body: ListView(
         children: [

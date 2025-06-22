@@ -2,6 +2,7 @@ import 'package:egyrailwayes/constants/app_color.dart';
 import 'package:egyrailwayes/constants/main_button.dart';
 import 'package:egyrailwayes/constants/name_container.dart';
 import 'package:egyrailwayes/constants/profile_button.dart';
+import 'package:egyrailwayes/screens/Start/welcome.dart';
 
 import 'package:egyrailwayes/screens/pages/bottom_bar.dart';
 import 'package:egyrailwayes/screens/profile/edit_profile.dart';
@@ -410,7 +411,23 @@ class _MyprofileState extends State<Myprofile> {
                                     ),
                                     SizedBox(height: 25.h),
                                     profile_button(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        try {
+                                          await Supabase.instance.client.auth
+                                              .signOut(); // ✨ لازم await هنا
+                                          print("User logged out");
+
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Welcome()),
+                                            (route) => false,
+                                          );
+                                        } catch (e) {
+                                          print("Logout failed: $e");
+                                        }
+                                      },
                                       text: "Logout",
                                       fontWeight: FontWeight.bold,
                                       colortext: Colors.red,

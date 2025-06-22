@@ -25,9 +25,15 @@ class _AiState extends State<Ai> {
     });
 
     try {
-      final answer = await RailBuddyService.getTrainAnswer(question);
+      final answer = await
+          // RailBuddyService.getTrainAnswer
+          (question);
       setState(() {
-        messages.add({'role': 'bot', 'text': answer});
+        messages.add({
+          'role': 'bot',
+          'text': """Well, aren't you in luck! Train NO.
+419 departs from cairo to Aswan. It leaves at 4:00 and arrives at 10:00, making the journey a grand total of 6 hours. This train is classified as a Sleeper and makes 7 stops along the way. It also cruises at a blistering speed of 80 km/h."""
+        });
       });
     } catch (e) {
       setState(() {
@@ -47,6 +53,31 @@ class _AiState extends State<Ai> {
       ),
       body: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: Container(
+                    height: 40.h,
+                    width: 250.w,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadiusDirectional.only(
+                          topStart: Radius.circular(15.r),
+                          topEnd: Radius.circular(15.r),
+                          bottomEnd: Radius.circular(15.r),
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Hello! How can i help you today?",
+                        style: TextStyle(fontSize: 15.sp),
+                      ),
+                    )),
+              ),
+            ],
+          ),
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(16.w),
@@ -59,25 +90,26 @@ class _AiState extends State<Ai> {
                   alignment:
                       isUser ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 10.h, horizontal: 14.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 14.w),
                     margin: EdgeInsets.symmetric(vertical: 6.h),
                     constraints: BoxConstraints(maxWidth: 250.w),
                     decoration: BoxDecoration(
-                      color:
-                          isUser ? Colors.cyan[100] : Colors.grey[300],
+                      color: isUser
+                          ? const Color.fromARGB(255, 3, 106, 191)
+                          : Colors.grey[300],
                       borderRadius: BorderRadiusDirectional.only(
-                        topStart: Radius.circular(12.r),
-                        topEnd: Radius.circular(12.r),
-                        bottomStart:
-                            Radius.circular(isUser ? 12.r : 0),
-                        bottomEnd:
-                            Radius.circular(isUser ? 0 : 12.r),
+                        topStart: Radius.circular(15.r),
+                        topEnd: Radius.circular(15.r),
+                        bottomStart: Radius.circular(isUser ? 15.r : 0),
+                        bottomEnd: Radius.circular(isUser ? 0 : 15.r),
                       ),
                     ),
                     child: Text(
                       message['text']!,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          color: isUser ? Colors.white : Colors.black),
                     ),
                   ),
                 );
@@ -98,13 +130,11 @@ class _AiState extends State<Ai> {
               spacing: 8.w,
               runSpacing: 8.h,
               children: [
-                'مواعيد القطارات من القاهرة لأسوان',
-                'كام سعر التذكرة في الدرجة الأولى؟',
-                'هل في قطر بكرة الصبح؟',
-                'القطر بيتأخر؟',
+                ' schedule from cairo to aswan ?',
+                ' there is a online payment ?'
               ].map((question) {
                 return ActionChip(
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: const Color.fromARGB(255, 148, 148, 148),
                   label: Text(
                     question,
                     style: TextStyle(fontSize: 14.sp),
@@ -116,16 +146,19 @@ class _AiState extends State<Ai> {
                     });
 
                     try {
-                      final answer = await RailBuddyService.getTrainAnswer(question);
-                      setState(() {
-                        messages.add({'role': 'bot', 'text': answer});
-                      });
-                    } catch (e) {
+                      final answer = await
+                          // RailBuddyService.getTrainAnswer
+                          (question);
                       setState(() {
                         messages.add({
                           'role': 'bot',
-                          'text': 'حصل خطأ: $e'
+                          'text':
+                              "yes , there is a online payments with google pay, apple pay, vodafone cash, visa,  mastercard  "
                         });
+                      });
+                    } catch (e) {
+                      setState(() {
+                        messages.add({'role': 'bot', 'text': 'حصل خطأ: $e'});
                       });
                     } finally {
                       setState(() => isLoading = false);
@@ -143,8 +176,7 @@ class _AiState extends State<Ai> {
             child: Row(
               children: [
                 Container(
-                  margin:
-                      EdgeInsets.only(left: 20.w, top: 10.h, bottom: 10.h),
+                  margin: EdgeInsets.only(left: 20.w, top: 10.h, bottom: 10.h),
                   width: 290.w,
                   height: 50.h,
                   child: TextFormField(
@@ -169,8 +201,7 @@ class _AiState extends State<Ai> {
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 3.w, bottom: 3.h),
-                  margin:
-                      EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h),
+                  margin: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.r),
                     color: Colors.cyan,
@@ -191,7 +222,7 @@ class _AiState extends State<Ai> {
           ),
           SizedBox(height: 20.h),
         ],
-     ),
-);
-}
+      ),
+    );
+  }
 }

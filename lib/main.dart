@@ -1,7 +1,5 @@
-import 'package:egyrailwayes/ai.dart';
 import 'package:egyrailwayes/core/config/app_config.dart';
-
-import 'package:egyrailwayes/test.dart';
+import 'package:egyrailwayes/screens/Start/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           // home: user != null ? const Bottombar() : Welcome(),
-          home: Ai(),
+          home: Splash(),
         );
       },
     );
